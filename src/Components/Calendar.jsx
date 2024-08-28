@@ -1,38 +1,19 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { use100vh } from "react-div-100vh";
-import dayjs from "dayjs";
 import "../Styles/Calendar.css";
 import {
   Box,
-  Button,
   Text,
-  useColorMode,
-  CircularProgress,
-  VStack,
-  Stack,
-  HStack,
-  Title,
   Flex,
   Spacer,
   Center,
   Grid,
   GridItem,
   SimpleGrid,
-  Card,
-  CardBody,
-  CardHeader, 
-  CardFooter,
-  StackDivider,
-  Heading,
-  Container,
-  transition,
 } from "@chakra-ui/react";
+import { Card, CardHeader, CardBody } from '@chakra-ui/card'
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { setDate } from "date-fns/esm";
-import useMedia from "../Hooks/useMedia";
-import calendarImg from "../Assets/Calendar.jpg";
-import CalendarImageModal from "./Calendar/CalendarImageModal";
+// import calendarImg from "../Assets/Calendarimg.jpg";
+// import CalendarImageModal from "./Calendar/CalendarImageModal";
 const dateFns = require("date-fns");
 
 const Navbar = (props) => {
@@ -47,7 +28,7 @@ const Navbar = (props) => {
       </Center>
       <Center><ChevronRightIcon onClick={props.next}/></Center>
       <Spacer />
-      <CalendarImageModal />
+      {/*<CalendarImageModal />*/}
     </Flex>
   );
   

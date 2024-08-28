@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import BottomNav from "./Components/BottomNav";
 import Calendar from "./Components/Calendar";
 import Clock from "./Components/Clock";
-import Events from "./Components/Events";
 import Food from "./Components/Food";
 import Navbar from "./Components/Navbar";
 import News from "./Components/News";
@@ -12,13 +11,6 @@ import SchoolEnd from "./Components/SchoolEnd";
 
 import Announcements from "./Components/Announcements";
 import SpecialToast from "./Components/SpecialToast";
-
-import {
-  CalendarOutlined,
-  ClockCircleOutlined,
-  PlayCircleOutlined,
-  UnorderedListOutlined,
-} from "@ant-design/icons";
 
 const App = () => {
   const settingsFromStorage = localStorage.getItem("scheduleSettings");
@@ -64,14 +56,14 @@ const App = () => {
         <BottomNav setView={setView} view={view} />
         <Announcements />
 
-        {view == "clock" && (
+        {view === "clock" && (
           <Clock fullView={fullView} setFullView={setFullView} />
         )}
-        {view == "schedule" && <Schedule />}
-        {view == "news" && <News />}
-        {view == "events" && <Calendar />}
-        {view == "food" && <Food />}
-        {view == "schoolend" && <SchoolEnd />}
+        {view === "schedule" && <Schedule />}
+        {view === "news" && <News />}
+        {view === "events" && <Calendar />}
+        {view === "food" && <Food />}
+        {view === "schoolend" && <SchoolEnd />}
 
         <SpecialToast />
       </div>

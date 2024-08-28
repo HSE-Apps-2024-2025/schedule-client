@@ -2,12 +2,6 @@ import React from "react";
 
 import useMedia from "../Hooks/useMedia";
 
-import {
-  CalendarOutlined,
-  ClockCircleOutlined,
-  UnorderedListOutlined,
-  PlayCircleOutlined,
-} from "@ant-design/icons";
 import { theme, useColorMode, Text, Center } from "@chakra-ui/react";
 import RestaurantOutlinedIcon from "@material-ui/icons/RestaurantOutlined";
 
@@ -16,23 +10,12 @@ const BottomNav = (props) => {
     ["(min-width: 750px)", "(max-width: 750px)"],
     [false, true]
   );
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode } = useColorMode();
 
-  let colorTheme;
-
-  if (colorMode == "dark") {
-    colorTheme = {
-      selectedBackground: "#54617a",
-      unselectedBackground: "#3a4354",
-      // boxShadow: "2px 2px 10px rgb(0,118,220,0.32)",
-    };
-  } else if (colorMode == "light") {
-    colorTheme = {
-      selectedBackground: "white",
-      unselectedBackground: "#f8f8f8",
-      // boxShadow: "2px 2px 10px rgb(0,118,220,0.32)",
-    };
-  }
+  let colorTheme = {
+    selectedBackground: colorMode === "light" ? "white" : "#54617a",
+    unselectedBackground: colorMode === "light" ? "#f8f8f8" : "#3a4354",
+  };
 
   const iconStyle = { 
     fontSize: "20px", 
@@ -101,7 +84,6 @@ const BottomNav = (props) => {
             cursor: "pointer",
           }}
         >
-          {/* <UnorderedListOutlined style={{ fontSize: "20px" }} /> */}
           <Center><i class="bi bi-list" style={{fontSize: "25px", display: "flex", justifyContent: "center", alignItems: "center"}}></i></Center>
         </div>
         <div
@@ -122,7 +104,6 @@ const BottomNav = (props) => {
             cursor: "pointer",
           }}
         >
-          {/* <ClockCircleOutlined style={{ fontSize: "20px" }} /> */}
           <Center><i class="bi bi-clock" style={iconStyle}></i></Center>
         </div>
         <div
@@ -144,7 +125,6 @@ const BottomNav = (props) => {
             cursor: "pointer",
           }}
         >
-          {/* <ClockCircleOutlined style={{ fontSize: "20px" }} /> */}
           <Center><i class="bi bi-hourglass-split" style={iconStyle}></i></Center>
         </div>
         <div
@@ -166,7 +146,6 @@ const BottomNav = (props) => {
             cursor: "pointer",
           }}
         >
-          {/* <CalendarOutlined style={{ fontSize: "20px" }} /> */}
           <Center><i class="bi bi-calendar" style={iconStyle}></i></Center>
         </div>
       </div>
