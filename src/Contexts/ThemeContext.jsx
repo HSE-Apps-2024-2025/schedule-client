@@ -9,7 +9,7 @@ export const ThemeContext = createContext();
 // Create a provider component that wraps the app
 const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(extendTheme(themeList["basic"]));
-  const [snowSettings, setSnowSettings] = useState(true);
+  const [snowSettings, setSnowSettings] = useState(false);
   const [themeSettings, setThemeSettings] = useState(JSON.parse(localStorage.getItem("scheduleSettings")));
   const [insideThemeSettings, setInsideThemeSettings] = useState(themeSettings);
   useEffect(() => {
@@ -20,7 +20,7 @@ const ThemeProvider = ({ children }) => {
     // this uses newSettings because insideThemeSettings is not updated yet
     const currentTheme = newSettings && newSettings['theme'] ? newSettings['theme'] : 'basic';
     setTheme(extendTheme({ ...themeList[currentTheme.toLowerCase()], config }));
-    const currentSnow = newSettings['snow'] !== undefined ? newSettings['snow'] : true;
+    const currentSnow = newSettings['snow'] !== undefined ? newSettings['snow'] : false;
     setSnowSettings(currentSnow);
 
 

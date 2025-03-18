@@ -54,7 +54,7 @@ const Navbar = ({ fullView, setFullView }) => {
   const [settings, setSettings] = useState(
     JSON.parse(localStorage.getItem("scheduleSettings"))
   );
-  const [snow, setSnow] = useState(JSON.parse(localStorage.getItem("scheduleSettings"))["snow"] !== undefined ? JSON.parse(localStorage.getItem("scheduleSettings"))["snow"] : snowSettings !== undefined ? snowSettings : true);
+  const [snow, setSnow] = useState(JSON.parse(localStorage.getItem("scheduleSettings"))["snow"] !== undefined ? JSON.parse(localStorage.getItem("scheduleSettings"))["snow"] : snowSettings !== undefined ? snowSettings : false);
 
   const [settingsPending, setSettingsPending] = useState(settings);
 
