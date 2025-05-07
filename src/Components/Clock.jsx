@@ -40,6 +40,42 @@ const Clock = ({ fullView, setFullView }) => {
   const [status, setStatus] = useState("LOADING");
   const [noSchoolText, setNoSchoolText] = useState(null);
   const [lunchPeriod, setLunchPeriod] = useState();
+  const [prevPeriod, setPrevPeriod] = useState(null);
+
+  const playPeriodChangeSound = () => {
+      try {
+        // Create audio context
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        // Resume if suspended (needed for some mobile browsers)
+        if (audioContext.state === "suspended") {
+          audioContext.resume();
+        }
+        
+        // Create nodes
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        // Configure
+        oscillator.type = "sine";
+        oscillator.frequency.value = 442;
+        gainNode.gain.value = 0.1;
+        
+        // Connect and play
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        oscillator.start();
+        
+        // Stop after 2 seconds and clean up
+        setTimeout(() => {
+          oscillator.stop();
+          audioContext.close().catch(err => console.error("Error closing audio context:", err));
+        }, 2000);
+      } catch (error) {
+        console.error("Audio error:", error);
+      }
+    }
+
 
   const statusTextData = {
     BEFORE_SCHOOL_MORNING: {
@@ -140,7 +176,13 @@ const Clock = ({ fullView, setFullView }) => {
           currentTime < period.endTimeUnix
         ) {
           setStatus("SCHOOL_NOW");
+
+          // Check if period has changed
+          if (prevPeriod === null || prevPeriod.periodName !== period.periodName) {
+            playPeriodChangeSound();
+          }
           setPeriod(period);
+          setPrevPeriod(period);
 
           try {
             if (period.isPassing) {
